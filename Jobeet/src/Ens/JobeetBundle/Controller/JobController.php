@@ -2,9 +2,11 @@
 
 namespace Ens\JobeetBundle\Controller;
 
+use Ens\JobeetBundle\EnsJobeetBundle;
 use Ens\JobeetBundle\Entity\Job;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Job controller.
@@ -55,8 +57,16 @@ class JobController extends Controller
      * Finds and displays a job entity.
      *
      */
-    public function showAction(Job $job)
+    public function showAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $job = $em->getRepository('EnsJobeetBundle:Job')->find($id);
+
+        if(!$job){
+            throw $this->createNotFoundException('Unable to find Job entity.');
+        }
+
         $deleteForm = $this->createDeleteForm($job);
 
         return $this->render('job/show.html.twig', array(
