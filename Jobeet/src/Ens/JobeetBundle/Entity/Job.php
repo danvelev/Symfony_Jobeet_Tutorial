@@ -1,8 +1,10 @@
 <?php
 
 namespace Ens\JobeetBundle\Entity;
-
+use Ens\JobeetBundle\Utils\Jobeet;
 use Doctrine\ORM\Mapping as ORM;
+
+
 
 /**
  * Job
@@ -517,4 +519,20 @@ class Job
     {
         $this->updated_at = new \DateTime();
     }
+
+
+
+    // Slugify column values => replacing all non-ASCII chars with -
+    public function getCompanySlug(){
+        return Jobeet::slugify($this->getCompany());
+    }
+
+    public function getPositionSlug(){
+        return Jobeet::slugify($this->getPosition());
+    }
+
+    public function getLocationSlug(){
+        return Jobeet::slugify($this->getLocation());
+    }
+
 }
