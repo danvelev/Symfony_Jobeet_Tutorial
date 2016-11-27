@@ -136,4 +136,10 @@ class Category
     {
         return $this->affiliates;
     }
+
+    // to be used by the category drop down menu
+    public function __toString()
+    {
+        return $this->getName() ? $this->getName() : "";
+    }
 }
