@@ -1,11 +1,11 @@
 Ens\JobeetBundle\Entity\Category:
   type: entity
   table: category
-  id:
+  fields:
     id:
       type: integer
+      id: true
       generator: { strategy: AUTO }
-  fields:
     name:
       type: string
       length: 255
@@ -14,6 +14,7 @@ Ens\JobeetBundle\Entity\Category:
     jobs:
       targetEntity: Job
       mappedBy: category
-    category_affiliates:
-      targetEntity: CategoryAffiliate
-      mappedBy: category
+  manyToMany:
+    affiliates:
+      targetEntity: Affiliate
+      mappedBy: categories

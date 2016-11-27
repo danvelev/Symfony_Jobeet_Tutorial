@@ -1,11 +1,12 @@
 Ens\JobeetBundle\Entity\Affiliate:
   type: entity
   table: affiliate
-  id:
+  repositoryClass: Ens\JobeetBundle\Entity\Affiliate
+  fields:
     id:
       type: integer
-      generator: { strategy: AUTO }
-  fields:
+      id: true
+      generator: { strategy: AUTO}
     url:
       type: string
       length: 255
@@ -18,9 +19,16 @@ Ens\JobeetBundle\Entity\Affiliate:
       length: 255
     created_at:
       type: datetime
-  oneToMany:
-    category_affiliates:
-      targetEntity: CategoryAffiliate
-      mappedBy: affiliate
+  manyToMany:
+    categories:
+      targetEntity: Category
+      joinTable:
+        name: category_affiliate
+        joinColumns:
+          affiliate_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          category_id:
+            referencedColumnName: id
   lifecycleCallbacks:
     prePersist: [ setCreatedAtValue ]
