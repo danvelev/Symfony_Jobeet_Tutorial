@@ -98,6 +98,20 @@ class JobController extends Controller
         ));
     }
 
+    public function rateAction(Request $request, Job $job)
+    {
+        $deleteForm = $this->createDeleteForm($job);
+        $editForm = $this->createForm('Ens\JobeetBundle\Form\JobType', $job);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if($job->getRating() != $request->attributes)
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('ens_job_index', array('id' => $job->getId()));
+        }
+    }
+
     /**
      * Deletes a job entity.
      *

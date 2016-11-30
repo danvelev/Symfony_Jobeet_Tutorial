@@ -3,6 +3,14 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/ensjobeet/css/jobs.css') }}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href=" {{ asset('bundles/starrating/css/rating.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +24,7 @@
                             {{ job.position }}
                         </a>
                     </td>
+                    <td class="rate">{{ job.rating|rating(5, "fa-lg") }}</td>
                     <td class="company">{{ job.company }}</td>
                 </tr>
             {% endfor %}
