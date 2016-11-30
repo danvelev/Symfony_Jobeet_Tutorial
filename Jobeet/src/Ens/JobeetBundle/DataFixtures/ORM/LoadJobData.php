@@ -38,7 +38,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $job_sensio_labs->setIsActivated(true);
         $job_sensio_labs->setToken('job_sensio_labs');
         $job_sensio_labs->setEmail('job@example.com');
-        $job_sensio_labs->setRating(0);
+        $job_sensio_labs->setRating(3);
         $job_sensio_labs->setExpiresAt(new \DateTime('+30 days'));
 
         // Job 2- Designer
@@ -56,7 +56,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $job_extreme_sensio->setIsActivated(true);
         $job_extreme_sensio->setToken('job_extreme_sensio');
         $job_extreme_sensio->setEmail('job@example.com');
-        $job_extreme_sensio->setRating(0);
+        $job_extreme_sensio->setRating(2);
         $job_extreme_sensio->setExpiresAt(new \DateTime('+30 days'));
 
         // update data to database and flush it in the end
